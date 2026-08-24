@@ -86,6 +86,9 @@ class ConvertApi
         'convertZplToHtml' => [
             'application/json',
         ],
+        'voidZpl' => [
+            'application/json',
+        ],
     ];
 
     /**
@@ -1334,6 +1337,304 @@ class ConvertApi
                 }
             } else {
                 $httpBody = $zpl_html_input_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                try {
+                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
+                } catch (\JsonException $e) {
+                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
+                }
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Api-Key'] = $apiKey;
+        }
+        // this endpoint requires Bearer (sh_live_…) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation voidZpl
+     *
+     * Stamp ZPL as void / do-not-ship
+     *
+     * @param  \StripyHorse\Model\VoidInputBody $void_input_body void_input_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidZpl'] to see the possible values for this operation
+     *
+     * @throws \StripyHorse\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \StripyHorse\Model\VoidOutputBody|\StripyHorse\Model\ErrorModel
+     */
+    public function voidZpl($void_input_body, string $contentType = self::contentTypes['voidZpl'][0])
+    {
+        list($response) = $this->voidZplWithHttpInfo($void_input_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation voidZplWithHttpInfo
+     *
+     * Stamp ZPL as void / do-not-ship
+     *
+     * @param  \StripyHorse\Model\VoidInputBody $void_input_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidZpl'] to see the possible values for this operation
+     *
+     * @throws \StripyHorse\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \StripyHorse\Model\VoidOutputBody|\StripyHorse\Model\ErrorModel, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function voidZplWithHttpInfo($void_input_body, string $contentType = self::contentTypes['voidZpl'][0])
+    {
+        $request = $this->voidZplRequest($void_input_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\StripyHorse\Model\VoidOutputBody',
+                        $request,
+                        $response,
+                    );
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\StripyHorse\Model\ErrorModel',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\StripyHorse\Model\VoidOutputBody',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\StripyHorse\Model\VoidOutputBody',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\StripyHorse\Model\ErrorModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation voidZplAsync
+     *
+     * Stamp ZPL as void / do-not-ship
+     *
+     * @param  \StripyHorse\Model\VoidInputBody $void_input_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidZpl'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function voidZplAsync($void_input_body, string $contentType = self::contentTypes['voidZpl'][0])
+    {
+        return $this->voidZplAsyncWithHttpInfo($void_input_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation voidZplAsyncWithHttpInfo
+     *
+     * Stamp ZPL as void / do-not-ship
+     *
+     * @param  \StripyHorse\Model\VoidInputBody $void_input_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidZpl'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function voidZplAsyncWithHttpInfo($void_input_body, string $contentType = self::contentTypes['voidZpl'][0])
+    {
+        $returnType = '\StripyHorse\Model\VoidOutputBody';
+        $request = $this->voidZplRequest($void_input_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'voidZpl'
+     *
+     * @param  \StripyHorse\Model\VoidInputBody $void_input_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidZpl'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function voidZplRequest($void_input_body, string $contentType = self::contentTypes['voidZpl'][0])
+    {
+
+        // verify the required parameter 'void_input_body' is set
+        if ($void_input_body === null || (is_array($void_input_body) && count($void_input_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $void_input_body when calling voidZpl'
+            );
+        }
+
+
+        $resourcePath = '/v1/void';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($void_input_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                try {
+                    $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($void_input_body), JSON_THROW_ON_ERROR);
+                } catch (\JsonException $e) {
+                    throw new \InvalidArgumentException('json_encode error: ' . $e->getMessage(), 0, $e);
+                }
+            } else {
+                $httpBody = $void_input_body;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

@@ -27,6 +27,8 @@ docs/Model/RenderedLabel.md
 docs/Model/StateOutputBody.md
 docs/Model/StatusSnapshot.md
 docs/Model/UpdatePrinterInputBody.md
+docs/Model/VoidInputBody.md
+docs/Model/VoidOutputBody.md
 docs/Model/ZplHTMLInputBody.md
 docs/Model/ZplHTMLOutputBody.md
 git_push.sh
@@ -58,6 +60,8 @@ lib/Model/RenderedLabel.php
 lib/Model/StateOutputBody.php
 lib/Model/StatusSnapshot.php
 lib/Model/UpdatePrinterInputBody.php
+lib/Model/VoidInputBody.php
+lib/Model/VoidOutputBody.php
 lib/Model/ZplHTMLInputBody.php
 lib/Model/ZplHTMLOutputBody.php
 lib/ObjectSerializer.php
@@ -85,5 +89,7 @@ test/Model/RenderedLabelTest.php
 test/Model/StateOutputBodyTest.php
 test/Model/StatusSnapshotTest.php
 test/Model/UpdatePrinterInputBodyTest.php
+test/Model/VoidInputBodyTest.php
+test/Model/VoidOutputBodyTest.php
 test/Model/ZplHTMLInputBodyTest.php
 test/Model/ZplHTMLOutputBodyTest.php
