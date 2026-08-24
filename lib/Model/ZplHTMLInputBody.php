@@ -266,6 +266,14 @@ class ZplHTMLInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PRESET__2X3 = '2x3';
     public const PRESET__3X2 = '3x2';
     public const PRESET_NETSTAMP = 'netstamp';
+    public const PRESET__2_25X1_25 = '2.25x1.25';
+    public const PRESET__2X1 = '2x1';
+    public const PRESET__3X1 = '3x1';
+    public const PRESET__4X1 = '4x1';
+    public const PRESET__1X1 = '1x1';
+    public const PRESET__4X3 = '4x3';
+    public const PRESET__4X8 = '4x8';
+    public const PRESET_A6 = 'a6';
 
     /**
      * Gets allowable values of the enum
@@ -300,6 +308,14 @@ class ZplHTMLInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
             self::PRESET__2X3,
             self::PRESET__3X2,
             self::PRESET_NETSTAMP,
+            self::PRESET__2_25X1_25,
+            self::PRESET__2X1,
+            self::PRESET__3X1,
+            self::PRESET__4X1,
+            self::PRESET__1X1,
+            self::PRESET__4X3,
+            self::PRESET__4X8,
+            self::PRESET_A6,
         ];
     }
 
