@@ -275,6 +275,9 @@ class VoidInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PRESET__2X4 = '2x4';
     public const PRESET__3X5 = '3x5';
     public const PRESET__5X3 = '5x3';
+    public const PRESET__2X3 = '2x3';
+    public const PRESET__3X2 = '3x2';
+    public const PRESET_NETSTAMP = 'netstamp';
 
     /**
      * Gets allowable values of the enum
@@ -306,6 +309,9 @@ class VoidInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
             self::PRESET__2X4,
             self::PRESET__3X5,
             self::PRESET__5X3,
+            self::PRESET__2X3,
+            self::PRESET__3X2,
+            self::PRESET_NETSTAMP,
         ];
     }
 
