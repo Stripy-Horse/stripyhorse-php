@@ -1,6 +1,6 @@
 <?php
 /**
- * CreatePrinterInputBodyTest
+ * ZplHTMLInputBodyTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace StripyHorse\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreatePrinterInputBodyTest Class Doc Comment
+ * ZplHTMLInputBodyTest Class Doc Comment
  *
  * @category    Class
- * @description CreatePrinterInputBody
+ * @description ZplHTMLInputBody
  * @package     StripyHorse
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreatePrinterInputBodyTest extends TestCase
+class ZplHTMLInputBodyTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class CreatePrinterInputBodyTest extends TestCase
     }
 
     /**
-     * Test "CreatePrinterInputBody"
+     * Test "ZplHTMLInputBody"
      */
-    public function testCreatePrinterInputBody()
+    public function testZplHTMLInputBody()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -98,24 +98,6 @@ class CreatePrinterInputBodyTest extends TestCase
     }
 
     /**
-     * Test attribute "mode"
-     */
-    public function testPropertyMode()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "preset"
      */
     public function testPropertyPreset()
@@ -125,18 +107,18 @@ class CreatePrinterInputBodyTest extends TestCase
     }
 
     /**
-     * Test attribute "webhook_url"
+     * Test attribute "width_mm"
      */
-    public function testPropertyWebhookUrl()
+    public function testPropertyWidthMm()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "width_mm"
+     * Test attribute "zpl"
      */
-    public function testPropertyWidthMm()
+    public function testPropertyZpl()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

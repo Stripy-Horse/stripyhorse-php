@@ -9,6 +9,7 @@ All URIs are relative to https://api.stripyhorse.io, except if the operation def
 | [**convertBatch()**](ConvertApi.md#convertBatch) | **POST** /v1/convert/batch | Convert many documents in one request, results streamed |
 | [**convertDocument()**](ConvertApi.md#convertDocument) | **POST** /v1/convert | Convert a PDF or image to ZPL |
 | [**convertHtml()**](ConvertApi.md#convertHtml) | **POST** /v1/convert/html | Convert an HTML label design to ZPL |
+| [**convertZplToHtml()**](ConvertApi.md#convertZplToHtml) | **POST** /v1/convert/zpl-html | Decompile ZPL into editable HTML |
 
 
 ## `convertBatch()`
@@ -101,7 +102,7 @@ convertDocument($file, $barcode_aware, $compression, $dpmm, $height_mm, $preset,
 
 Convert a PDF or image to ZPL
 
-Each page becomes its own ^GFA command (Zebra ACS run-length compression). PDFs up to 16 pages.  **PHP** (`composer require stripyhorse/stripyhorse-php`): ```php $convert = new StripyHorse\\Api\\ConvertApi(null, $config); $result = $convert->convertDocument(new SplFileObject('shipping-label.pdf'), preset: '4x6'); foreach ($result->getPages() as $page) { sendToPrinter($page->getZpl()); } ```  **curl**: ```bash curl https://api.stripyhorse.io/v1/convert \\   -H \"X-Api-Key: sh_live_YOUR_KEY\" -F file=@shipping-label.pdf -F preset=4x6 ```
+Each page becomes its own ^GFA command (Zebra ACS run-length compression). PDFs up to 16 pages.
 
 ### Example
 
@@ -184,7 +185,7 @@ convertHtml($html_input_body): \StripyHorse\Model\HtmlOutputBody
 
 Convert an HTML label design to ZPL
 
-Renders the HTML at exact print resolution (headless Chrome, network access blocked) and rasterizes it — except `<zpl-barcode type=\"code128|qr\" data=\"…\">` elements, which are measured from the layout and emitted as native ^BC/^BQ fields at their exact boxes. Size and position them with CSS (`left/top/width/height`). Unsupported types or unencodable data fail loudly.  **PHP** (`composer require stripyhorse/stripyhorse-php`): ```php $out = $convert->convertHtml(new StripyHorse\\Model\\HtmlInputBody([     'html' => '<div style=\"position:absolute;left:40px;top:40px;font-size:50px\">Hello</div>',     'preset' => '4x6', ])); echo $out->getZpl(); ```
+Renders the HTML at exact print resolution (headless Chrome, network access blocked) and rasterizes it — except `<zpl-barcode type=\"code128|qr\" data=\"…\">` elements, which are measured from the layout and emitted as native ^BC/^BQ fields at their exact boxes. Size and position them with CSS (`left/top/width/height`); optional `module` (^BY dots) and `mag` (QR magnification) attributes pin exact bar geometry instead of fitting it to the box. Unsupported types or unencodable data fail loudly.  **PHP** (`composer require stripyhorse/stripyhorse-php`): ```php $out = $convert->convertHtml(new StripyHorse\\Model\\HtmlInputBody([     'html' => '<div style=\"position:absolute;left:40px;top:40px;font-size:50px\">Hello</div>',     'preset' => '4x6', ])); echo $out->getZpl(); ```
 
 ### Example
 
@@ -227,6 +228,71 @@ try {
 ### Return type
 
 [**\StripyHorse\Model\HtmlOutputBody**](../Model/HtmlOutputBody.md)
+
+### Authorization
+
+[headerKey](../../README.md#headerKey), [bearerKey](../../README.md#bearerKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `convertZplToHtml()`
+
+```php
+convertZplToHtml($zpl_html_input_body): \StripyHorse\Model\ZplHTMLOutputBody
+```
+
+Decompile ZPL into editable HTML
+
+The migration path for legacy ZPL templates: text, boxes and Code128/QR barcodes become editable HTML in the dialect convertHtml accepts; unsupported elements (raster graphics, exotic barcodes) are embedded as positioned images so the layout survives. Round-tripping through convertHtml preserves scannable barcodes.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: headerKey
+$config = StripyHorse\Configuration::getDefaultConfiguration()->setApiKey('X-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = StripyHorse\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Api-Key', 'Bearer');
+
+// Configure Bearer (sh_live_…) authorization: bearerKey
+$config = StripyHorse\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new StripyHorse\Api\ConvertApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$zpl_html_input_body = new \StripyHorse\Model\ZplHTMLInputBody(); // \StripyHorse\Model\ZplHTMLInputBody
+
+try {
+    $result = $apiInstance->convertZplToHtml($zpl_html_input_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ConvertApi->convertZplToHtml: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **zpl_html_input_body** | [**\StripyHorse\Model\ZplHTMLInputBody**](../Model/ZplHTMLInputBody.md)|  | |
+
+### Return type
+
+[**\StripyHorse\Model\ZplHTMLOutputBody**](../Model/ZplHTMLOutputBody.md)
 
 ### Authorization
 

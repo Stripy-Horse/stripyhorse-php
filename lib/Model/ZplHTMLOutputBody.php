@@ -1,6 +1,6 @@
 <?php
 /**
- * JobOutputBody
+ * ZplHTMLOutputBody
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \StripyHorse\ObjectSerializer;
 
 /**
- * JobOutputBody Class Doc Comment
+ * ZplHTMLOutputBody Class Doc Comment
  *
  * @category Class
  * @package  StripyHorse
@@ -40,7 +40,7 @@ use \StripyHorse\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
+class ZplHTMLOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'JobOutputBody';
+    protected static $openAPIModelName = 'ZplHTMLOutputBody';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,7 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'labels' => 'string[]',
-        'zpl' => 'string'
+        'html' => 'string'
     ];
 
     /**
@@ -69,8 +68,7 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'labels' => null,
-        'zpl' => null
+        'html' => null
     ];
 
     /**
@@ -79,8 +77,7 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'labels' => true,
-        'zpl' => false
+        'html' => false
     ];
 
     /**
@@ -169,8 +166,7 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'labels' => 'labels',
-        'zpl' => 'zpl'
+        'html' => 'html'
     ];
 
     /**
@@ -179,8 +175,7 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'labels' => 'setLabels',
-        'zpl' => 'setZpl'
+        'html' => 'setHtml'
     ];
 
     /**
@@ -189,8 +184,7 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'labels' => 'getLabels',
-        'zpl' => 'getZpl'
+        'html' => 'getHtml'
     ];
 
     /**
@@ -250,8 +244,7 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('labels', $data ?? [], null);
-        $this->setIfExists('zpl', $data ?? [], null);
+        $this->setIfExists('html', $data ?? [], null);
     }
 
     /**
@@ -281,11 +274,8 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['labels'] === null && !$this->isNullableSetToNull('labels')) {
-            $invalidProperties[] = "'labels' is required";
-        }
-        if ($this->container['zpl'] === null) {
-            $invalidProperties[] = "'zpl' can't be null";
+        if ($this->container['html'] === null) {
+            $invalidProperties[] = "'html' can't be null";
         }
         return $invalidProperties;
     }
@@ -303,62 +293,28 @@ class JobOutputBody implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets labels
-     *
-     * @return string[]|null
-     */
-    public function getLabels()
-    {
-        return $this->container['labels'];
-    }
-
-    /**
-     * Sets labels
-     *
-     * @param string[]|null $labels URLs of the rendered label PNGs
-     *
-     * @return self
-     */
-    public function setLabels($labels)
-    {
-        if (is_null($labels)) {
-            array_push($this->openAPINullablesSetToNull, 'labels');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('labels', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['labels'] = $labels;
-
-        return $this;
-    }
-
-    /**
-     * Gets zpl
+     * Gets html
      *
      * @return string
      */
-    public function getZpl()
+    public function getHtml()
     {
-        return $this->container['zpl'];
+        return $this->container['html'];
     }
 
     /**
-     * Sets zpl
+     * Sets html
      *
-     * @param string $zpl The raw ZPL as received
+     * @param string $html Editable HTML in the convertHtml dialect
      *
      * @return self
      */
-    public function setZpl($zpl)
+    public function setHtml($html)
     {
-        if (is_null($zpl)) {
-            throw new \InvalidArgumentException('non-nullable zpl cannot be null');
+        if (is_null($html)) {
+            throw new \InvalidArgumentException('non-nullable html cannot be null');
         }
-        $this->container['zpl'] = $zpl;
+        $this->container['html'] = $html;
 
         return $this;
     }

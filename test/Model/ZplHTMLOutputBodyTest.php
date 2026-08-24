@@ -1,6 +1,6 @@
 <?php
 /**
- * CreatePrinterInputBodyTest
+ * ZplHTMLOutputBodyTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace StripyHorse\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CreatePrinterInputBodyTest Class Doc Comment
+ * ZplHTMLOutputBodyTest Class Doc Comment
  *
  * @category    Class
- * @description CreatePrinterInputBody
+ * @description ZplHTMLOutputBody
  * @package     StripyHorse
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class CreatePrinterInputBodyTest extends TestCase
+class ZplHTMLOutputBodyTest extends TestCase
 {
 
     /**
@@ -71,72 +71,18 @@ class CreatePrinterInputBodyTest extends TestCase
     }
 
     /**
-     * Test "CreatePrinterInputBody"
+     * Test "ZplHTMLOutputBody"
      */
-    public function testCreatePrinterInputBody()
+    public function testZplHTMLOutputBody()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "dpmm"
+     * Test attribute "html"
      */
-    public function testPropertyDpmm()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "height_mm"
-     */
-    public function testPropertyHeightMm()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "mode"
-     */
-    public function testPropertyMode()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "preset"
-     */
-    public function testPropertyPreset()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "webhook_url"
-     */
-    public function testPropertyWebhookUrl()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "width_mm"
-     */
-    public function testPropertyWidthMm()
+    public function testPropertyHtml()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

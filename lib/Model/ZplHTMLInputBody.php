@@ -1,6 +1,6 @@
 <?php
 /**
- * RenderInputBody
+ * ZplHTMLInputBody
  *
  * PHP version 8.1
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \StripyHorse\ObjectSerializer;
 
 /**
- * RenderInputBody Class Doc Comment
+ * ZplHTMLInputBody Class Doc Comment
  *
  * @category Class
  * @package  StripyHorse
@@ -40,7 +40,7 @@ use \StripyHorse\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
+class ZplHTMLInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @var string
      */
-    protected static $openAPIModelName = 'RenderInputBody';
+    protected static $openAPIModelName = 'ZplHTMLInputBody';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'dpmm' => 'int',
         'height_mm' => 'float',
         'preset' => 'string',
-        'rotation' => 'int',
         'width_mm' => 'float',
         'zpl' => 'string'
     ];
@@ -76,7 +75,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'dpmm' => 'int64',
         'height_mm' => 'double',
         'preset' => null,
-        'rotation' => 'int64',
         'width_mm' => 'double',
         'zpl' => null
     ];
@@ -90,7 +88,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'dpmm' => false,
         'height_mm' => false,
         'preset' => false,
-        'rotation' => false,
         'width_mm' => false,
         'zpl' => false
     ];
@@ -184,7 +181,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'dpmm' => 'dpmm',
         'height_mm' => 'heightMm',
         'preset' => 'preset',
-        'rotation' => 'rotation',
         'width_mm' => 'widthMm',
         'zpl' => 'zpl'
     ];
@@ -198,7 +194,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'dpmm' => 'setDpmm',
         'height_mm' => 'setHeightMm',
         'preset' => 'setPreset',
-        'rotation' => 'setRotation',
         'width_mm' => 'setWidthMm',
         'zpl' => 'setZpl'
     ];
@@ -212,7 +207,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'dpmm' => 'getDpmm',
         'height_mm' => 'getHeightMm',
         'preset' => 'getPreset',
-        'rotation' => 'getRotation',
         'width_mm' => 'getWidthMm',
         'zpl' => 'getZpl'
     ];
@@ -269,10 +263,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PRESET__2X4 = '2x4';
     public const PRESET__3X5 = '3x5';
     public const PRESET__5X3 = '5x3';
-    public const ROTATION_NUMBER_0 = 0;
-    public const ROTATION_NUMBER_90 = 90;
-    public const ROTATION_NUMBER_180 = 180;
-    public const ROTATION_NUMBER_270 = 270;
 
     /**
      * Gets allowable values of the enum
@@ -308,21 +298,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getRotationAllowableValues()
-    {
-        return [
-            self::ROTATION_NUMBER_0,
-            self::ROTATION_NUMBER_90,
-            self::ROTATION_NUMBER_180,
-            self::ROTATION_NUMBER_270,
-        ];
-    }
-
-    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -340,7 +315,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('dpmm', $data ?? [], null);
         $this->setIfExists('height_mm', $data ?? [], null);
         $this->setIfExists('preset', $data ?? [], null);
-        $this->setIfExists('rotation', $data ?? [], null);
         $this->setIfExists('width_mm', $data ?? [], null);
         $this->setIfExists('zpl', $data ?? [], null);
     }
@@ -390,15 +364,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'preset', must be one of '%s'",
                 $this->container['preset'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getRotationAllowableValues();
-        if (!is_null($this->container['rotation']) && !in_array($this->container['rotation'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'rotation', must be one of '%s'",
-                $this->container['rotation'],
                 implode("', '", $allowedValues)
             );
         }
@@ -485,7 +450,7 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable height_mm cannot be null');
         }
         if (($height_mm < 0)) {
-            throw new \InvalidArgumentException('invalid value for $height_mm when calling RenderInputBody., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for $height_mm when calling ZplHTMLInputBody., must be bigger than or equal to 0.');
         }
 
         $this->container['height_mm'] = $height_mm;
@@ -531,43 +496,6 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets rotation
-     *
-     * @return int|null
-     */
-    public function getRotation()
-    {
-        return $this->container['rotation'];
-    }
-
-    /**
-     * Sets rotation
-     *
-     * @param int|null $rotation rotation
-     *
-     * @return self
-     */
-    public function setRotation($rotation)
-    {
-        if (is_null($rotation)) {
-            throw new \InvalidArgumentException('non-nullable rotation cannot be null');
-        }
-        $allowedValues = $this->getRotationAllowableValues();
-        if (!in_array($rotation, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'rotation', must be one of '%s'",
-                    $rotation,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['rotation'] = $rotation;
-
-        return $this;
-    }
-
-    /**
      * Gets width_mm
      *
      * @return float|null
@@ -590,7 +518,7 @@ class RenderInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable width_mm cannot be null');
         }
         if (($width_mm < 0)) {
-            throw new \InvalidArgumentException('invalid value for $width_mm when calling RenderInputBody., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for $width_mm when calling ZplHTMLInputBody., must be bigger than or equal to 0.');
         }
 
         $this->container['width_mm'] = $width_mm;
