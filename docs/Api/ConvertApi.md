@@ -10,6 +10,7 @@ All URIs are relative to https://api.stripyhorse.io, except if the operation def
 | [**convertDocument()**](ConvertApi.md#convertDocument) | **POST** /v1/convert | Convert a PDF or image to ZPL |
 | [**convertHtml()**](ConvertApi.md#convertHtml) | **POST** /v1/convert/html | Convert an HTML label design to ZPL |
 | [**convertZplToHtml()**](ConvertApi.md#convertZplToHtml) | **POST** /v1/convert/zpl-html | Decompile ZPL into editable HTML |
+| [**rasterizeUnicode()**](ConvertApi.md#rasterizeUnicode) | **POST** /v1/unicode | Make Unicode ZPL printable on any Zebra |
 | [**voidZpl()**](ConvertApi.md#voidZpl) | **POST** /v1/void | Stamp ZPL as void / do-not-ship |
 
 
@@ -294,6 +295,71 @@ try {
 ### Return type
 
 [**\StripyHorse\Model\ZplHTMLOutputBody**](../Model/ZplHTMLOutputBody.md)
+
+### Authorization
+
+[headerKey](../../README.md#headerKey), [bearerKey](../../README.md#bearerKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `rasterizeUnicode()`
+
+```php
+rasterizeUnicode($unicode_input_body): \StripyHorse\Model\UnicodeOutputBody
+```
+
+Make Unicode ZPL printable on any Zebra
+
+Text fields containing characters the printer's fonts can't render — Arabic (contextual joining, RTL), Cyrillic, and everything else beyond ASCII — are shaped properly and re-emitted as ^GFA bitmaps at the field's exact position and size. Every other byte (barcodes, ASCII text, graphics) passes through untouched. Fields that can't be converted safely (rotated, ^FH-escaped) are left unchanged and reported in `skipped`.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: headerKey
+$config = StripyHorse\Configuration::getDefaultConfiguration()->setApiKey('X-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = StripyHorse\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Api-Key', 'Bearer');
+
+// Configure Bearer (sh_live_…) authorization: bearerKey
+$config = StripyHorse\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new StripyHorse\Api\ConvertApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$unicode_input_body = new \StripyHorse\Model\UnicodeInputBody(); // \StripyHorse\Model\UnicodeInputBody
+
+try {
+    $result = $apiInstance->rasterizeUnicode($unicode_input_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ConvertApi->rasterizeUnicode: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **unicode_input_body** | [**\StripyHorse\Model\UnicodeInputBody**](../Model/UnicodeInputBody.md)|  | |
+
+### Return type
+
+[**\StripyHorse\Model\UnicodeOutputBody**](../Model/UnicodeOutputBody.md)
 
 ### Authorization
 

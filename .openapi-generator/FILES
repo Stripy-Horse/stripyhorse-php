@@ -26,6 +26,8 @@ docs/Model/RenderOutputBody.md
 docs/Model/RenderedLabel.md
 docs/Model/StateOutputBody.md
 docs/Model/StatusSnapshot.md
+docs/Model/UnicodeInputBody.md
+docs/Model/UnicodeOutputBody.md
 docs/Model/UpdatePrinterInputBody.md
 docs/Model/VoidInputBody.md
 docs/Model/VoidOutputBody.md
@@ -59,6 +61,8 @@ lib/Model/RenderOutputBody.php
 lib/Model/RenderedLabel.php
 lib/Model/StateOutputBody.php
 lib/Model/StatusSnapshot.php
+lib/Model/UnicodeInputBody.php
+lib/Model/UnicodeOutputBody.php
 lib/Model/UpdatePrinterInputBody.php
 lib/Model/VoidInputBody.php
 lib/Model/VoidOutputBody.php
@@ -88,6 +92,8 @@ test/Model/RenderOutputBodyTest.php
 test/Model/RenderedLabelTest.php
 test/Model/StateOutputBodyTest.php
 test/Model/StatusSnapshotTest.php
+test/Model/UnicodeInputBodyTest.php
+test/Model/UnicodeOutputBodyTest.php
 test/Model/UpdatePrinterInputBodyTest.php
 test/Model/VoidInputBodyTest.php
 test/Model/VoidOutputBodyTest.php
