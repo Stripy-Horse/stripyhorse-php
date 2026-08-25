@@ -571,7 +571,7 @@ class VoidInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets text
      *
-     * @param string|null $text Warning text; default DO NOT SHIP
+     * @param string|null $text Warning text; default VOID - DO NOT MAIL
      *
      * @return self
      */

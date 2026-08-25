@@ -5,6 +5,7 @@
 README.md
 composer.json
 docs/Api/ConvertApi.md
+docs/Api/PrintersApi.md
 docs/Api/RenderApi.md
 docs/Api/SimulatorApi.md
 docs/Model/ConvertOutputBody.md
@@ -13,6 +14,9 @@ docs/Model/CreatePrinterInputBody.md
 docs/Model/ErrorDetail.md
 docs/Model/ErrorModel.md
 docs/Model/Faults.md
+docs/Model/HostStatus.md
+docs/Model/HostStatusInputBody.md
+docs/Model/HostStatusOutputBody.md
 docs/Model/HtmlInputBody.md
 docs/Model/HtmlOutputBody.md
 docs/Model/JobOutputBody.md
@@ -25,6 +29,7 @@ docs/Model/RenderInputBody.md
 docs/Model/RenderOutputBody.md
 docs/Model/RenderedLabel.md
 docs/Model/StateOutputBody.md
+docs/Model/StatusField.md
 docs/Model/StatusSnapshot.md
 docs/Model/UnicodeInputBody.md
 docs/Model/UnicodeOutputBody.md
@@ -35,6 +40,7 @@ docs/Model/ZplHTMLInputBody.md
 docs/Model/ZplHTMLOutputBody.md
 git_push.sh
 lib/Api/ConvertApi.php
+lib/Api/PrintersApi.php
 lib/Api/RenderApi.php
 lib/Api/SimulatorApi.php
 lib/ApiException.php
@@ -47,6 +53,9 @@ lib/Model/CreatePrinterInputBody.php
 lib/Model/ErrorDetail.php
 lib/Model/ErrorModel.php
 lib/Model/Faults.php
+lib/Model/HostStatus.php
+lib/Model/HostStatusInputBody.php
+lib/Model/HostStatusOutputBody.php
 lib/Model/HtmlInputBody.php
 lib/Model/HtmlOutputBody.php
 lib/Model/JobOutputBody.php
@@ -60,6 +69,7 @@ lib/Model/RenderInputBody.php
 lib/Model/RenderOutputBody.php
 lib/Model/RenderedLabel.php
 lib/Model/StateOutputBody.php
+lib/Model/StatusField.php
 lib/Model/StatusSnapshot.php
 lib/Model/UnicodeInputBody.php
 lib/Model/UnicodeOutputBody.php
@@ -71,6 +81,7 @@ lib/Model/ZplHTMLOutputBody.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/ConvertApiTest.php
+test/Api/PrintersApiTest.php
 test/Api/RenderApiTest.php
 test/Api/SimulatorApiTest.php
 test/Model/ConvertOutputBodyTest.php
@@ -79,6 +90,9 @@ test/Model/CreatePrinterInputBodyTest.php
 test/Model/ErrorDetailTest.php
 test/Model/ErrorModelTest.php
 test/Model/FaultsTest.php
+test/Model/HostStatusInputBodyTest.php
+test/Model/HostStatusOutputBodyTest.php
+test/Model/HostStatusTest.php
 test/Model/HtmlInputBodyTest.php
 test/Model/HtmlOutputBodyTest.php
 test/Model/JobOutputBodyTest.php
@@ -91,6 +105,7 @@ test/Model/RenderInputBodyTest.php
 test/Model/RenderOutputBodyTest.php
 test/Model/RenderedLabelTest.php
 test/Model/StateOutputBodyTest.php
+test/Model/StatusFieldTest.php
 test/Model/StatusSnapshotTest.php
 test/Model/UnicodeInputBodyTest.php
 test/Model/UnicodeOutputBodyTest.php
