@@ -11,6 +11,7 @@ All URIs are relative to https://api.stripyhorse.io, except if the operation def
 | [**convertHtml()**](ConvertApi.md#convertHtml) | **POST** /v1/convert/html | Convert an HTML label design to ZPL |
 | [**convertZplToHtml()**](ConvertApi.md#convertZplToHtml) | **POST** /v1/convert/zpl-html | Decompile ZPL into editable HTML |
 | [**rasterizeUnicode()**](ConvertApi.md#rasterizeUnicode) | **POST** /v1/unicode | Make Unicode ZPL printable on any Zebra |
+| [**stampZpl()**](ConvertApi.md#stampZpl) | **POST** /v1/stamp | Stamp an image onto ZPL labels |
 | [**voidZpl()**](ConvertApi.md#voidZpl) | **POST** /v1/void | Stamp ZPL as void / do-not-ship |
 
 
@@ -360,6 +361,71 @@ try {
 ### Return type
 
 [**\StripyHorse\Model\UnicodeOutputBody**](../Model/UnicodeOutputBody.md)
+
+### Authorization
+
+[headerKey](../../README.md#headerKey), [bearerKey](../../README.md#bearerKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `stampZpl()`
+
+```php
+stampZpl($stamp_input_body): \StripyHorse\Model\StampOutputBody
+```
+
+Stamp an image onto ZPL labels
+
+Bakes a PNG/GIF/JPEG (a logo, a QA stamp, a brand mark) onto every label in the stream as a positioned graphic field drawn over the existing content. Position and width are in printer dots; height follows the image's aspect ratio.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: headerKey
+$config = StripyHorse\Configuration::getDefaultConfiguration()->setApiKey('X-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = StripyHorse\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Api-Key', 'Bearer');
+
+// Configure Bearer (sh_live_…) authorization: bearerKey
+$config = StripyHorse\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new StripyHorse\Api\ConvertApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$stamp_input_body = new \StripyHorse\Model\StampInputBody(); // \StripyHorse\Model\StampInputBody
+
+try {
+    $result = $apiInstance->stampZpl($stamp_input_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ConvertApi->stampZpl: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **stamp_input_body** | [**\StripyHorse\Model\StampInputBody**](../Model/StampInputBody.md)|  | |
+
+### Return type
+
+[**\StripyHorse\Model\StampOutputBody**](../Model/StampOutputBody.md)
 
 ### Authorization
 
