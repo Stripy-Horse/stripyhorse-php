@@ -89,6 +89,15 @@ class ElementTest extends TestCase
     }
 
     /**
+     * Test attribute "columns"
+     */
+    public function testPropertyColumns()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "corner_radius"
      */
     public function testPropertyCornerRadius()
@@ -245,6 +254,15 @@ class ElementTest extends TestCase
      * Test attribute "rotation"
      */
     public function testPropertyRotation()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "rows"
+     */
+    public function testPropertyRows()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

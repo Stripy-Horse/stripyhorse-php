@@ -58,6 +58,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPITypes = [
         'align' => 'string',
+        'columns' => 'int',
         'corner_radius' => 'int',
         'data' => 'string',
         'diameter' => 'int',
@@ -76,6 +77,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'png' => 'string',
         'print_text' => 'bool',
         'rotation' => 'int',
+        'rows' => 'int',
         'text' => 'string',
         'thickness' => 'int',
         'threshold' => 'int',
@@ -95,6 +97,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPIFormats = [
         'align' => null,
+        'columns' => 'int64',
         'corner_radius' => 'int64',
         'data' => null,
         'diameter' => 'int64',
@@ -113,6 +116,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'png' => null,
         'print_text' => null,
         'rotation' => 'int64',
+        'rows' => 'int64',
         'text' => null,
         'thickness' => 'int64',
         'threshold' => 'int64',
@@ -130,6 +134,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static array $openAPINullables = [
         'align' => false,
+        'columns' => false,
         'corner_radius' => false,
         'data' => false,
         'diameter' => false,
@@ -148,6 +153,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'png' => false,
         'print_text' => false,
         'rotation' => false,
+        'rows' => false,
         'text' => false,
         'thickness' => false,
         'threshold' => false,
@@ -245,6 +251,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'align' => 'align',
+        'columns' => 'columns',
         'corner_radius' => 'cornerRadius',
         'data' => 'data',
         'diameter' => 'diameter',
@@ -263,6 +270,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'png' => 'png',
         'print_text' => 'printText',
         'rotation' => 'rotation',
+        'rows' => 'rows',
         'text' => 'text',
         'thickness' => 'thickness',
         'threshold' => 'threshold',
@@ -280,6 +288,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'align' => 'setAlign',
+        'columns' => 'setColumns',
         'corner_radius' => 'setCornerRadius',
         'data' => 'setData',
         'diameter' => 'setDiameter',
@@ -298,6 +307,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'png' => 'setPng',
         'print_text' => 'setPrintText',
         'rotation' => 'setRotation',
+        'rows' => 'setRows',
         'text' => 'setText',
         'thickness' => 'setThickness',
         'threshold' => 'setThreshold',
@@ -315,6 +325,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'align' => 'getAlign',
+        'columns' => 'getColumns',
         'corner_radius' => 'getCornerRadius',
         'data' => 'getData',
         'diameter' => 'getDiameter',
@@ -333,6 +344,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'png' => 'getPng',
         'print_text' => 'getPrintText',
         'rotation' => 'getRotation',
+        'rows' => 'getRows',
         'text' => 'getText',
         'thickness' => 'getThickness',
         'threshold' => 'getThreshold',
@@ -409,6 +421,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_BOX = 'box';
     public const TYPE_LINE = 'line';
     public const TYPE_CIRCLE = 'circle';
+    public const TYPE_GRID = 'grid';
     public const TYPE_IMAGE = 'image';
     public const TYPE_RAW = 'raw';
 
@@ -489,6 +502,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_BOX,
             self::TYPE_LINE,
             self::TYPE_CIRCLE,
+            self::TYPE_GRID,
             self::TYPE_IMAGE,
             self::TYPE_RAW,
         ];
@@ -510,6 +524,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('align', $data ?? [], null);
+        $this->setIfExists('columns', $data ?? [], null);
         $this->setIfExists('corner_radius', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);
         $this->setIfExists('diameter', $data ?? [], null);
@@ -528,6 +543,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('png', $data ?? [], null);
         $this->setIfExists('print_text', $data ?? [], null);
         $this->setIfExists('rotation', $data ?? [], null);
+        $this->setIfExists('rows', $data ?? [], null);
         $this->setIfExists('text', $data ?? [], null);
         $this->setIfExists('thickness', $data ?? [], null);
         $this->setIfExists('threshold', $data ?? [], null);
@@ -574,6 +590,14 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if (!is_null($this->container['columns']) && ($this->container['columns'] > 50)) {
+            $invalidProperties[] = "invalid value for 'columns', must be smaller than or equal to 50.";
+        }
+
+        if (!is_null($this->container['columns']) && ($this->container['columns'] < 0)) {
+            $invalidProperties[] = "invalid value for 'columns', must be bigger than or equal to 0.";
+        }
+
         if (!is_null($this->container['corner_radius']) && ($this->container['corner_radius'] > 8)) {
             $invalidProperties[] = "invalid value for 'corner_radius', must be smaller than or equal to 8.";
         }
@@ -607,6 +631,14 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
                 $this->container['rotation'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['rows']) && ($this->container['rows'] > 50)) {
+            $invalidProperties[] = "invalid value for 'rows', must be smaller than or equal to 50.";
+        }
+
+        if (!is_null($this->container['rows']) && ($this->container['rows'] < 0)) {
+            $invalidProperties[] = "invalid value for 'rows', must be bigger than or equal to 0.";
         }
 
         if (!is_null($this->container['threshold']) && ($this->container['threshold'] > 255)) {
@@ -685,6 +717,40 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['align'] = $align;
+
+        return $this;
+    }
+
+    /**
+     * Gets columns
+     *
+     * @return int|null
+     */
+    public function getColumns()
+    {
+        return $this->container['columns'];
+    }
+
+    /**
+     * Sets columns
+     *
+     * @param int|null $columns Grid columns (default 1)
+     *
+     * @return self
+     */
+    public function setColumns($columns)
+    {
+        if (is_null($columns)) {
+            throw new \InvalidArgumentException('non-nullable columns cannot be null');
+        }
+        if (($columns > 50)) {
+            throw new \InvalidArgumentException('invalid value for $columns when calling Element., must be smaller than or equal to 50.');
+        }
+        if (($columns < 0)) {
+            throw new \InvalidArgumentException('invalid value for $columns when calling Element., must be bigger than or equal to 0.');
+        }
+
+        $this->container['columns'] = $columns;
 
         return $this;
     }
@@ -1208,6 +1274,40 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['rotation'] = $rotation;
+
+        return $this;
+    }
+
+    /**
+     * Gets rows
+     *
+     * @return int|null
+     */
+    public function getRows()
+    {
+        return $this->container['rows'];
+    }
+
+    /**
+     * Sets rows
+     *
+     * @param int|null $rows Grid rows (default 1)
+     *
+     * @return self
+     */
+    public function setRows($rows)
+    {
+        if (is_null($rows)) {
+            throw new \InvalidArgumentException('non-nullable rows cannot be null');
+        }
+        if (($rows > 50)) {
+            throw new \InvalidArgumentException('invalid value for $rows when calling Element., must be smaller than or equal to 50.');
+        }
+        if (($rows < 0)) {
+            throw new \InvalidArgumentException('invalid value for $rows when calling Element., must be bigger than or equal to 0.');
+        }
+
+        $this->container['rows'] = $rows;
 
         return $this;
     }
