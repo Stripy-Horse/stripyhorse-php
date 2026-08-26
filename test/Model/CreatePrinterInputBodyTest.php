@@ -80,6 +80,15 @@ class CreatePrinterInputBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "anonymize"
+     */
+    public function testPropertyAnonymize()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "dpmm"
      */
     public function testPropertyDpmm()

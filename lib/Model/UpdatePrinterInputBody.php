@@ -57,6 +57,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $openAPITypes = [
+        'anonymize' => 'bool',
         'name' => 'string',
         'webhook_url' => 'string'
     ];
@@ -69,6 +70,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'anonymize' => null,
         'name' => null,
         'webhook_url' => null
     ];
@@ -79,6 +81,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'anonymize' => false,
         'name' => false,
         'webhook_url' => false
     ];
@@ -169,6 +172,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'anonymize' => 'anonymize',
         'name' => 'name',
         'webhook_url' => 'webhookUrl'
     ];
@@ -179,6 +183,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'anonymize' => 'setAnonymize',
         'name' => 'setName',
         'webhook_url' => 'setWebhookUrl'
     ];
@@ -189,6 +194,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'anonymize' => 'getAnonymize',
         'name' => 'getName',
         'webhook_url' => 'getWebhookUrl'
     ];
@@ -250,6 +256,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('anonymize', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('webhook_url', $data ?? [], null);
     }
@@ -295,6 +302,33 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets anonymize
+     *
+     * @return bool|null
+     */
+    public function getAnonymize()
+    {
+        return $this->container['anonymize'];
+    }
+
+    /**
+     * Sets anonymize
+     *
+     * @param bool|null $anonymize anonymize
+     *
+     * @return self
+     */
+    public function setAnonymize($anonymize)
+    {
+        if (is_null($anonymize)) {
+            throw new \InvalidArgumentException('non-nullable anonymize cannot be null');
+        }
+        $this->container['anonymize'] = $anonymize;
+
+        return $this;
+    }
 
     /**
      * Gets name

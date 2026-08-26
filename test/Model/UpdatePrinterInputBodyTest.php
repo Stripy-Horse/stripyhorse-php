@@ -80,6 +80,15 @@ class UpdatePrinterInputBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "anonymize"
+     */
+    public function testPropertyAnonymize()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "name"
      */
     public function testPropertyName()

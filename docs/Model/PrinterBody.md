@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**anonymize** | **bool** | When true, PII is masked and graphics stripped from every captured frame |
 **created_at** | **\DateTime** |  |
 **dpmm** | **int** |  |
 **expires_at** | **\DateTime** |  | [optional]

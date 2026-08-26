@@ -80,6 +80,15 @@ class PrinterBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "anonymize"
+     */
+    public function testPropertyAnonymize()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()

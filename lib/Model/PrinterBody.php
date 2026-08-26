@@ -57,6 +57,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
+        'anonymize' => 'bool',
         'created_at' => '\DateTime',
         'dpmm' => 'int',
         'expires_at' => '\DateTime',
@@ -80,6 +81,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'anonymize' => null,
         'created_at' => 'date-time',
         'dpmm' => 'int64',
         'expires_at' => 'date-time',
@@ -101,6 +103,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'anonymize' => false,
         'created_at' => false,
         'dpmm' => false,
         'expires_at' => false,
@@ -202,6 +205,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'anonymize' => 'anonymize',
         'created_at' => 'createdAt',
         'dpmm' => 'dpmm',
         'expires_at' => 'expiresAt',
@@ -223,6 +227,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'anonymize' => 'setAnonymize',
         'created_at' => 'setCreatedAt',
         'dpmm' => 'setDpmm',
         'expires_at' => 'setExpiresAt',
@@ -244,6 +249,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'anonymize' => 'getAnonymize',
         'created_at' => 'getCreatedAt',
         'dpmm' => 'getDpmm',
         'expires_at' => 'getExpiresAt',
@@ -331,6 +337,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('anonymize', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('dpmm', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
@@ -373,6 +380,9 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['anonymize'] === null) {
+            $invalidProperties[] = "'anonymize' can't be null";
+        }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -420,6 +430,33 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets anonymize
+     *
+     * @return bool
+     */
+    public function getAnonymize()
+    {
+        return $this->container['anonymize'];
+    }
+
+    /**
+     * Sets anonymize
+     *
+     * @param bool $anonymize When true, PII is masked and graphics stripped from every captured frame
+     *
+     * @return self
+     */
+    public function setAnonymize($anonymize)
+    {
+        if (is_null($anonymize)) {
+            throw new \InvalidArgumentException('non-nullable anonymize cannot be null');
+        }
+        $this->container['anonymize'] = $anonymize;
+
+        return $this;
+    }
 
     /**
      * Gets created_at

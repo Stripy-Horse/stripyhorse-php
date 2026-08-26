@@ -57,6 +57,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $openAPITypes = [
+        'anonymize' => 'bool',
         'dpmm' => 'int',
         'height_mm' => 'float',
         'mode' => 'string',
@@ -74,6 +75,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'anonymize' => null,
         'dpmm' => 'int64',
         'height_mm' => 'double',
         'mode' => null,
@@ -89,6 +91,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'anonymize' => false,
         'dpmm' => false,
         'height_mm' => false,
         'mode' => false,
@@ -184,6 +187,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'anonymize' => 'anonymize',
         'dpmm' => 'dpmm',
         'height_mm' => 'heightMm',
         'mode' => 'mode',
@@ -199,6 +203,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'anonymize' => 'setAnonymize',
         'dpmm' => 'setDpmm',
         'height_mm' => 'setHeightMm',
         'mode' => 'setMode',
@@ -214,6 +219,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'anonymize' => 'getAnonymize',
         'dpmm' => 'getDpmm',
         'height_mm' => 'getHeightMm',
         'mode' => 'getMode',
@@ -363,6 +369,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('anonymize', $data ?? [], null);
         $this->setIfExists('dpmm', $data ?? [], null);
         $this->setIfExists('height_mm', $data ?? [], null);
         $this->setIfExists('mode', $data ?? [], null);
@@ -455,6 +462,33 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets anonymize
+     *
+     * @return bool|null
+     */
+    public function getAnonymize()
+    {
+        return $this->container['anonymize'];
+    }
+
+    /**
+     * Sets anonymize
+     *
+     * @param bool|null $anonymize Mask PII and strip graphics from every captured frame
+     *
+     * @return self
+     */
+    public function setAnonymize($anonymize)
+    {
+        if (is_null($anonymize)) {
+            throw new \InvalidArgumentException('non-nullable anonymize cannot be null');
+        }
+        $this->container['anonymize'] = $anonymize;
+
+        return $this;
+    }
 
     /**
      * Gets dpmm
