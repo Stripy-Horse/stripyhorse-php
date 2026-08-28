@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **align** | **string** | Alignment when wrapping | [optional]
+**anchor** | **string** | Which corner x,y names. topLeft (^FO, default); bottomLeft (^FT: the text baseline, what most designer-exported ZPL uses); the Right variants make x the field&#39;s right edge (ZPL justification 1) | [optional]
 **columns** | **int** | Grid columns (default 1) | [optional]
 **corner_radius** | **int** | Box corner rounding 0-8 | [optional]
 **data** | **string** | Barcode payload; {{name}} interpolates | [optional]
@@ -15,9 +16,11 @@ Name | Type | Description | Notes
 **font_width** | **int** | Character width in dots; 0 follows fontHeight | [optional]
 **height** | **int** | Bar height in dots (1D) / box height in dots (box) | [optional]
 **length** | **int** | Line length in dots | [optional]
+**line_spacing** | **int** | Extra dots between wrapped lines | [optional]
 **lines** | **int** | Max lines when wrapping (default 1) | [optional]
 **magnification** | **int** | QR module magnification (default 3) | [optional]
 **max_width** | **int** | Wrap text into a block this many dots wide | [optional]
+**mode** | **string** | Code 128 mode: N none (default), U UCC case, A automatic subset switching, D UCC/EAN application identifiers | [optional]
 **module_size** | **int** | DataMatrix module size in dots (default 4) | [optional]
 **module_width** | **int** | Narrow element width in dots (1D; default 3) | [optional]
 **orientation** | **string** | Line direction | [optional]

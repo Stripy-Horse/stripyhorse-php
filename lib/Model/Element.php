@@ -58,6 +58,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPITypes = [
         'align' => 'string',
+        'anchor' => 'string',
         'columns' => 'int',
         'corner_radius' => 'int',
         'data' => 'string',
@@ -68,9 +69,11 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'font_width' => 'int',
         'height' => 'int',
         'length' => 'int',
+        'line_spacing' => 'int',
         'lines' => 'int',
         'magnification' => 'int',
         'max_width' => 'int',
+        'mode' => 'string',
         'module_size' => 'int',
         'module_width' => 'int',
         'orientation' => 'string',
@@ -97,6 +100,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPIFormats = [
         'align' => null,
+        'anchor' => null,
         'columns' => 'int64',
         'corner_radius' => 'int64',
         'data' => null,
@@ -107,9 +111,11 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'font_width' => 'int64',
         'height' => 'int64',
         'length' => 'int64',
+        'line_spacing' => 'int64',
         'lines' => 'int64',
         'magnification' => 'int64',
         'max_width' => 'int64',
+        'mode' => null,
         'module_size' => 'int64',
         'module_width' => 'int64',
         'orientation' => null,
@@ -134,6 +140,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static array $openAPINullables = [
         'align' => false,
+        'anchor' => false,
         'columns' => false,
         'corner_radius' => false,
         'data' => false,
@@ -144,9 +151,11 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'font_width' => false,
         'height' => false,
         'length' => false,
+        'line_spacing' => false,
         'lines' => false,
         'magnification' => false,
         'max_width' => false,
+        'mode' => false,
         'module_size' => false,
         'module_width' => false,
         'orientation' => false,
@@ -251,6 +260,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'align' => 'align',
+        'anchor' => 'anchor',
         'columns' => 'columns',
         'corner_radius' => 'cornerRadius',
         'data' => 'data',
@@ -261,9 +271,11 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'font_width' => 'fontWidth',
         'height' => 'height',
         'length' => 'length',
+        'line_spacing' => 'lineSpacing',
         'lines' => 'lines',
         'magnification' => 'magnification',
         'max_width' => 'maxWidth',
+        'mode' => 'mode',
         'module_size' => 'moduleSize',
         'module_width' => 'moduleWidth',
         'orientation' => 'orientation',
@@ -288,6 +300,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'align' => 'setAlign',
+        'anchor' => 'setAnchor',
         'columns' => 'setColumns',
         'corner_radius' => 'setCornerRadius',
         'data' => 'setData',
@@ -298,9 +311,11 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'font_width' => 'setFontWidth',
         'height' => 'setHeight',
         'length' => 'setLength',
+        'line_spacing' => 'setLineSpacing',
         'lines' => 'setLines',
         'magnification' => 'setMagnification',
         'max_width' => 'setMaxWidth',
+        'mode' => 'setMode',
         'module_size' => 'setModuleSize',
         'module_width' => 'setModuleWidth',
         'orientation' => 'setOrientation',
@@ -325,6 +340,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'align' => 'getAlign',
+        'anchor' => 'getAnchor',
         'columns' => 'getColumns',
         'corner_radius' => 'getCornerRadius',
         'data' => 'getData',
@@ -335,9 +351,11 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         'font_width' => 'getFontWidth',
         'height' => 'getHeight',
         'length' => 'getLength',
+        'line_spacing' => 'getLineSpacing',
         'lines' => 'getLines',
         'magnification' => 'getMagnification',
         'max_width' => 'getMaxWidth',
+        'mode' => 'getMode',
         'module_size' => 'getModuleSize',
         'module_width' => 'getModuleWidth',
         'orientation' => 'getOrientation',
@@ -401,11 +419,21 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
     public const ALIGN_CENTER = 'center';
     public const ALIGN_RIGHT = 'right';
     public const ALIGN_JUSTIFY = 'justify';
+    public const ANCHOR_EMPTY = '';
+    public const ANCHOR_TOP_LEFT = 'topLeft';
+    public const ANCHOR_BOTTOM_LEFT = 'bottomLeft';
+    public const ANCHOR_TOP_RIGHT = 'topRight';
+    public const ANCHOR_BOTTOM_RIGHT = 'bottomRight';
     public const ERROR_CORRECTION_EMPTY = '';
     public const ERROR_CORRECTION_L = 'L';
     public const ERROR_CORRECTION_M = 'M';
     public const ERROR_CORRECTION_Q = 'Q';
     public const ERROR_CORRECTION_H = 'H';
+    public const MODE_EMPTY = '';
+    public const MODE_N = 'N';
+    public const MODE_U = 'U';
+    public const MODE_A = 'A';
+    public const MODE_D = 'D';
     public const ORIENTATION_EMPTY = '';
     public const ORIENTATION_H = 'h';
     public const ORIENTATION_V = 'v';
@@ -446,6 +474,22 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string[]
      */
+    public function getAnchorAllowableValues()
+    {
+        return [
+            self::ANCHOR_EMPTY,
+            self::ANCHOR_TOP_LEFT,
+            self::ANCHOR_BOTTOM_LEFT,
+            self::ANCHOR_TOP_RIGHT,
+            self::ANCHOR_BOTTOM_RIGHT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
     public function getErrorCorrectionAllowableValues()
     {
         return [
@@ -454,6 +498,22 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             self::ERROR_CORRECTION_M,
             self::ERROR_CORRECTION_Q,
             self::ERROR_CORRECTION_H,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getModeAllowableValues()
+    {
+        return [
+            self::MODE_EMPTY,
+            self::MODE_N,
+            self::MODE_U,
+            self::MODE_A,
+            self::MODE_D,
         ];
     }
 
@@ -524,6 +584,7 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('align', $data ?? [], null);
+        $this->setIfExists('anchor', $data ?? [], null);
         $this->setIfExists('columns', $data ?? [], null);
         $this->setIfExists('corner_radius', $data ?? [], null);
         $this->setIfExists('data', $data ?? [], null);
@@ -534,9 +595,11 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('font_width', $data ?? [], null);
         $this->setIfExists('height', $data ?? [], null);
         $this->setIfExists('length', $data ?? [], null);
+        $this->setIfExists('line_spacing', $data ?? [], null);
         $this->setIfExists('lines', $data ?? [], null);
         $this->setIfExists('magnification', $data ?? [], null);
         $this->setIfExists('max_width', $data ?? [], null);
+        $this->setIfExists('mode', $data ?? [], null);
         $this->setIfExists('module_size', $data ?? [], null);
         $this->setIfExists('module_width', $data ?? [], null);
         $this->setIfExists('orientation', $data ?? [], null);
@@ -590,6 +653,15 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        $allowedValues = $this->getAnchorAllowableValues();
+        if (!is_null($this->container['anchor']) && !in_array($this->container['anchor'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'anchor', must be one of '%s'",
+                $this->container['anchor'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if (!is_null($this->container['columns']) && ($this->container['columns'] > 50)) {
             $invalidProperties[] = "invalid value for 'columns', must be smaller than or equal to 50.";
         }
@@ -611,6 +683,15 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'error_correction', must be one of '%s'",
                 $this->container['error_correction'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getModeAllowableValues();
+        if (!is_null($this->container['mode']) && !in_array($this->container['mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'mode', must be one of '%s'",
+                $this->container['mode'],
                 implode("', '", $allowedValues)
             );
         }
@@ -717,6 +798,43 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['align'] = $align;
+
+        return $this;
+    }
+
+    /**
+     * Gets anchor
+     *
+     * @return string|null
+     */
+    public function getAnchor()
+    {
+        return $this->container['anchor'];
+    }
+
+    /**
+     * Sets anchor
+     *
+     * @param string|null $anchor Which corner x,y names. topLeft (^FO, default); bottomLeft (^FT: the text baseline, what most designer-exported ZPL uses); the Right variants make x the field's right edge (ZPL justification 1)
+     *
+     * @return self
+     */
+    public function setAnchor($anchor)
+    {
+        if (is_null($anchor)) {
+            throw new \InvalidArgumentException('non-nullable anchor cannot be null');
+        }
+        $allowedValues = $this->getAnchorAllowableValues();
+        if (!in_array($anchor, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'anchor', must be one of '%s'",
+                    $anchor,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['anchor'] = $anchor;
 
         return $this;
     }
@@ -1016,6 +1134,33 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets line_spacing
+     *
+     * @return int|null
+     */
+    public function getLineSpacing()
+    {
+        return $this->container['line_spacing'];
+    }
+
+    /**
+     * Sets line_spacing
+     *
+     * @param int|null $line_spacing Extra dots between wrapped lines
+     *
+     * @return self
+     */
+    public function setLineSpacing($line_spacing)
+    {
+        if (is_null($line_spacing)) {
+            throw new \InvalidArgumentException('non-nullable line_spacing cannot be null');
+        }
+        $this->container['line_spacing'] = $line_spacing;
+
+        return $this;
+    }
+
+    /**
      * Gets lines
      *
      * @return int|null
@@ -1092,6 +1237,43 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable max_width cannot be null');
         }
         $this->container['max_width'] = $max_width;
+
+        return $this;
+    }
+
+    /**
+     * Gets mode
+     *
+     * @return string|null
+     */
+    public function getMode()
+    {
+        return $this->container['mode'];
+    }
+
+    /**
+     * Sets mode
+     *
+     * @param string|null $mode Code 128 mode: N none (default), U UCC case, A automatic subset switching, D UCC/EAN application identifiers
+     *
+     * @return self
+     */
+    public function setMode($mode)
+    {
+        if (is_null($mode)) {
+            throw new \InvalidArgumentException('non-nullable mode cannot be null');
+        }
+        $allowedValues = $this->getModeAllowableValues();
+        if (!in_array($mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'mode', must be one of '%s'",
+                    $mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['mode'] = $mode;
 
         return $this;
     }

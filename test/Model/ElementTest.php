@@ -89,6 +89,15 @@ class ElementTest extends TestCase
     }
 
     /**
+     * Test attribute "anchor"
+     */
+    public function testPropertyAnchor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "columns"
      */
     public function testPropertyColumns()
@@ -179,6 +188,15 @@ class ElementTest extends TestCase
     }
 
     /**
+     * Test attribute "line_spacing"
+     */
+    public function testPropertyLineSpacing()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "lines"
      */
     public function testPropertyLines()
@@ -200,6 +218,15 @@ class ElementTest extends TestCase
      * Test attribute "max_width"
      */
     public function testPropertyMaxWidth()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "mode"
+     */
+    public function testPropertyMode()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
