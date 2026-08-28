@@ -57,10 +57,13 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
+        'darkness' => 'string',
         'faults' => '\StripyHorse\Model\Faults',
         'formats_in_buffer' => 'int',
+        'friendly_name' => 'string',
         'label_length_dots' => 'int',
         'odometer' => 'int',
+        'speed_ips' => 'string',
         'width_dots' => 'int'
     ];
 
@@ -72,10 +75,13 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'darkness' => null,
         'faults' => null,
         'formats_in_buffer' => 'int64',
+        'friendly_name' => null,
         'label_length_dots' => 'int64',
         'odometer' => 'int64',
+        'speed_ips' => null,
         'width_dots' => 'int64'
     ];
 
@@ -85,10 +91,13 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'darkness' => false,
         'faults' => false,
         'formats_in_buffer' => false,
+        'friendly_name' => false,
         'label_length_dots' => false,
         'odometer' => false,
+        'speed_ips' => false,
         'width_dots' => false
     ];
 
@@ -178,10 +187,13 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'darkness' => 'darkness',
         'faults' => 'faults',
         'formats_in_buffer' => 'formatsInBuffer',
+        'friendly_name' => 'friendlyName',
         'label_length_dots' => 'labelLengthDots',
         'odometer' => 'odometer',
+        'speed_ips' => 'speedIps',
         'width_dots' => 'widthDots'
     ];
 
@@ -191,10 +203,13 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'darkness' => 'setDarkness',
         'faults' => 'setFaults',
         'formats_in_buffer' => 'setFormatsInBuffer',
+        'friendly_name' => 'setFriendlyName',
         'label_length_dots' => 'setLabelLengthDots',
         'odometer' => 'setOdometer',
+        'speed_ips' => 'setSpeedIps',
         'width_dots' => 'setWidthDots'
     ];
 
@@ -204,10 +219,13 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'darkness' => 'getDarkness',
         'faults' => 'getFaults',
         'formats_in_buffer' => 'getFormatsInBuffer',
+        'friendly_name' => 'getFriendlyName',
         'label_length_dots' => 'getLabelLengthDots',
         'odometer' => 'getOdometer',
+        'speed_ips' => 'getSpeedIps',
         'width_dots' => 'getWidthDots'
     ];
 
@@ -268,10 +286,13 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('darkness', $data ?? [], null);
         $this->setIfExists('faults', $data ?? [], null);
         $this->setIfExists('formats_in_buffer', $data ?? [], null);
+        $this->setIfExists('friendly_name', $data ?? [], null);
         $this->setIfExists('label_length_dots', $data ?? [], null);
         $this->setIfExists('odometer', $data ?? [], null);
+        $this->setIfExists('speed_ips', $data ?? [], null);
         $this->setIfExists('width_dots', $data ?? [], null);
     }
 
@@ -302,17 +323,26 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['darkness'] === null) {
+            $invalidProperties[] = "'darkness' can't be null";
+        }
         if ($this->container['faults'] === null) {
             $invalidProperties[] = "'faults' can't be null";
         }
         if ($this->container['formats_in_buffer'] === null) {
             $invalidProperties[] = "'formats_in_buffer' can't be null";
         }
+        if ($this->container['friendly_name'] === null) {
+            $invalidProperties[] = "'friendly_name' can't be null";
+        }
         if ($this->container['label_length_dots'] === null) {
             $invalidProperties[] = "'label_length_dots' can't be null";
         }
         if ($this->container['odometer'] === null) {
             $invalidProperties[] = "'odometer' can't be null";
+        }
+        if ($this->container['speed_ips'] === null) {
+            $invalidProperties[] = "'speed_ips' can't be null";
         }
         if ($this->container['width_dots'] === null) {
             $invalidProperties[] = "'width_dots' can't be null";
@@ -331,6 +361,33 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets darkness
+     *
+     * @return string
+     */
+    public function getDarkness()
+    {
+        return $this->container['darkness'];
+    }
+
+    /**
+     * Sets darkness
+     *
+     * @param string $darkness print.tone setting, e.g. 20.0
+     *
+     * @return self
+     */
+    public function setDarkness($darkness)
+    {
+        if (is_null($darkness)) {
+            throw new \InvalidArgumentException('non-nullable darkness cannot be null');
+        }
+        $this->container['darkness'] = $darkness;
+
+        return $this;
+    }
 
     /**
      * Gets faults
@@ -387,6 +444,33 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets friendly_name
+     *
+     * @return string
+     */
+    public function getFriendlyName()
+    {
+        return $this->container['friendly_name'];
+    }
+
+    /**
+     * Sets friendly_name
+     *
+     * @param string $friendly_name device.friendly_name override; empty means unset
+     *
+     * @return self
+     */
+    public function setFriendlyName($friendly_name)
+    {
+        if (is_null($friendly_name)) {
+            throw new \InvalidArgumentException('non-nullable friendly_name cannot be null');
+        }
+        $this->container['friendly_name'] = $friendly_name;
+
+        return $this;
+    }
+
+    /**
      * Gets label_length_dots
      *
      * @return int
@@ -436,6 +520,33 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable odometer cannot be null');
         }
         $this->container['odometer'] = $odometer;
+
+        return $this;
+    }
+
+    /**
+     * Gets speed_ips
+     *
+     * @return string
+     */
+    public function getSpeedIps()
+    {
+        return $this->container['speed_ips'];
+    }
+
+    /**
+     * Sets speed_ips
+     *
+     * @param string $speed_ips media.speed setting, inches/second
+     *
+     * @return self
+     */
+    public function setSpeedIps($speed_ips)
+    {
+        if (is_null($speed_ips)) {
+            throw new \InvalidArgumentException('non-nullable speed_ips cannot be null');
+        }
+        $this->container['speed_ips'] = $speed_ips;
 
         return $this;
     }

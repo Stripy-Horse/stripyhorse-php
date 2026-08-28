@@ -80,6 +80,15 @@ class StatusSnapshotTest extends TestCase
     }
 
     /**
+     * Test attribute "darkness"
+     */
+    public function testPropertyDarkness()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "faults"
      */
     public function testPropertyFaults()
@@ -98,6 +107,15 @@ class StatusSnapshotTest extends TestCase
     }
 
     /**
+     * Test attribute "friendly_name"
+     */
+    public function testPropertyFriendlyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "label_length_dots"
      */
     public function testPropertyLabelLengthDots()
@@ -110,6 +128,15 @@ class StatusSnapshotTest extends TestCase
      * Test attribute "odometer"
      */
     public function testPropertyOdometer()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "speed_ips"
+     */
+    public function testPropertySpeedIps()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
