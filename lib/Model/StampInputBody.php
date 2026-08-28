@@ -305,6 +305,10 @@ class StampInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['image'] === null) {
             $invalidProperties[] = "'image' can't be null";
         }
+        if (!is_null($this->container['width_dots']) && ($this->container['width_dots'] > 10000)) {
+            $invalidProperties[] = "invalid value for 'width_dots', must be smaller than or equal to 10000.";
+        }
+
         if (!is_null($this->container['width_dots']) && ($this->container['width_dots'] < 0)) {
             $invalidProperties[] = "invalid value for 'width_dots', must be bigger than or equal to 0.";
         }
@@ -383,6 +387,9 @@ class StampInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($width_dots)) {
             throw new \InvalidArgumentException('non-nullable width_dots cannot be null');
+        }
+        if (($width_dots > 10000)) {
+            throw new \InvalidArgumentException('invalid value for $width_dots when calling StampInputBody., must be smaller than or equal to 10000.');
         }
         if (($width_dots < 0)) {
             throw new \InvalidArgumentException('invalid value for $width_dots when calling StampInputBody., must be bigger than or equal to 0.');

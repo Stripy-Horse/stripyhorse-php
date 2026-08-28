@@ -687,6 +687,10 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if (!is_null($this->container['font_height']) && ($this->container['font_height'] > 10000)) {
+            $invalidProperties[] = "invalid value for 'font_height', must be smaller than or equal to 10000.";
+        }
+
         $allowedValues = $this->getModeAllowableValues();
         if (!is_null($this->container['mode']) && !in_array($this->container['mode'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -1047,6 +1051,10 @@ class Element implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($font_height)) {
             throw new \InvalidArgumentException('non-nullable font_height cannot be null');
         }
+        if (($font_height > 10000)) {
+            throw new \InvalidArgumentException('invalid value for $font_height when calling Element., must be smaller than or equal to 10000.');
+        }
+
         $this->container['font_height'] = $font_height;
 
         return $this;
