@@ -270,22 +270,22 @@ class VoidInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DPMM_NUMBER_24 = 24;
     public const PRESET__4X6 = '4x6';
     public const PRESET__6X4 = '6x4';
+    public const PRESET__4X8 = '4x8';
     public const PRESET__4X4 = '4x4';
-    public const PRESET__4X2 = '4x2';
-    public const PRESET__2X4 = '2x4';
+    public const PRESET__4X3 = '4x3';
     public const PRESET__3X5 = '3x5';
     public const PRESET__5X3 = '5x3';
+    public const PRESET__4X2 = '4x2';
+    public const PRESET__2X4 = '2x4';
     public const PRESET__2X3 = '2x3';
     public const PRESET__3X2 = '3x2';
-    public const PRESET_NETSTAMP = 'netstamp';
-    public const PRESET__2_25X1_25 = '2.25x1.25';
-    public const PRESET__1_5X1 = '1.5x1';
     public const PRESET__2X1 = '2x1';
     public const PRESET__3X1 = '3x1';
     public const PRESET__4X1 = '4x1';
+    public const PRESET__2_25X1_25 = '2.25x1.25';
+    public const PRESET__1_5X1 = '1.5x1';
     public const PRESET__1X1 = '1x1';
-    public const PRESET__4X3 = '4x3';
-    public const PRESET__4X8 = '4x8';
+    public const PRESET_NETSTAMP = 'netstamp';
     public const PRESET_A6 = 'a6';
 
     /**
@@ -313,22 +313,22 @@ class VoidInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::PRESET__4X6,
             self::PRESET__6X4,
+            self::PRESET__4X8,
             self::PRESET__4X4,
-            self::PRESET__4X2,
-            self::PRESET__2X4,
+            self::PRESET__4X3,
             self::PRESET__3X5,
             self::PRESET__5X3,
+            self::PRESET__4X2,
+            self::PRESET__2X4,
             self::PRESET__2X3,
             self::PRESET__3X2,
-            self::PRESET_NETSTAMP,
-            self::PRESET__2_25X1_25,
-            self::PRESET__1_5X1,
             self::PRESET__2X1,
             self::PRESET__3X1,
             self::PRESET__4X1,
+            self::PRESET__2_25X1_25,
+            self::PRESET__1_5X1,
             self::PRESET__1X1,
-            self::PRESET__4X3,
-            self::PRESET__4X8,
+            self::PRESET_NETSTAMP,
             self::PRESET_A6,
         ];
     }
