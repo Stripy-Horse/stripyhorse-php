@@ -279,6 +279,7 @@ class ComposeInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
     public const PRESET__3X2 = '3x2';
     public const PRESET_NETSTAMP = 'netstamp';
     public const PRESET__2_25X1_25 = '2.25x1.25';
+    public const PRESET__1_5X1 = '1.5x1';
     public const PRESET__2X1 = '2x1';
     public const PRESET__3X1 = '3x1';
     public const PRESET__4X1 = '4x1';
@@ -321,6 +322,7 @@ class ComposeInputBody implements ModelInterface, ArrayAccess, \JsonSerializable
             self::PRESET__3X2,
             self::PRESET_NETSTAMP,
             self::PRESET__2_25X1_25,
+            self::PRESET__1_5X1,
             self::PRESET__2X1,
             self::PRESET__3X1,
             self::PRESET__4X1,
