@@ -64,6 +64,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'label_length_dots' => 'int',
         'odometer' => 'int',
         'speed_ips' => 'string',
+        'tear_off' => 'string',
         'width_dots' => 'int'
     ];
 
@@ -82,6 +83,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'label_length_dots' => 'int64',
         'odometer' => 'int64',
         'speed_ips' => null,
+        'tear_off' => null,
         'width_dots' => 'int64'
     ];
 
@@ -98,6 +100,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'label_length_dots' => false,
         'odometer' => false,
         'speed_ips' => false,
+        'tear_off' => false,
         'width_dots' => false
     ];
 
@@ -194,6 +197,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'label_length_dots' => 'labelLengthDots',
         'odometer' => 'odometer',
         'speed_ips' => 'speedIps',
+        'tear_off' => 'tearOff',
         'width_dots' => 'widthDots'
     ];
 
@@ -210,6 +214,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'label_length_dots' => 'setLabelLengthDots',
         'odometer' => 'setOdometer',
         'speed_ips' => 'setSpeedIps',
+        'tear_off' => 'setTearOff',
         'width_dots' => 'setWidthDots'
     ];
 
@@ -226,6 +231,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'label_length_dots' => 'getLabelLengthDots',
         'odometer' => 'getOdometer',
         'speed_ips' => 'getSpeedIps',
+        'tear_off' => 'getTearOff',
         'width_dots' => 'getWidthDots'
     ];
 
@@ -293,6 +299,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('label_length_dots', $data ?? [], null);
         $this->setIfExists('odometer', $data ?? [], null);
         $this->setIfExists('speed_ips', $data ?? [], null);
+        $this->setIfExists('tear_off', $data ?? [], null);
         $this->setIfExists('width_dots', $data ?? [], null);
     }
 
@@ -343,6 +350,9 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['speed_ips'] === null) {
             $invalidProperties[] = "'speed_ips' can't be null";
+        }
+        if ($this->container['tear_off'] === null) {
+            $invalidProperties[] = "'tear_off' can't be null";
         }
         if ($this->container['width_dots'] === null) {
             $invalidProperties[] = "'width_dots' can't be null";
@@ -547,6 +557,33 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable speed_ips cannot be null');
         }
         $this->container['speed_ips'] = $speed_ips;
+
+        return $this;
+    }
+
+    /**
+     * Gets tear_off
+     *
+     * @return string
+     */
+    public function getTearOff()
+    {
+        return $this->container['tear_off'];
+    }
+
+    /**
+     * Sets tear_off
+     *
+     * @param string $tear_off ezpl.tear_off setting, dots
+     *
+     * @return self
+     */
+    public function setTearOff($tear_off)
+    {
+        if (is_null($tear_off)) {
+            throw new \InvalidArgumentException('non-nullable tear_off cannot be null');
+        }
+        $this->container['tear_off'] = $tear_off;
 
         return $this;
     }

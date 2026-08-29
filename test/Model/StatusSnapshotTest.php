@@ -143,6 +143,15 @@ class StatusSnapshotTest extends TestCase
     }
 
     /**
+     * Test attribute "tear_off"
+     */
+    public function testPropertyTearOff()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "width_dots"
      */
     public function testPropertyWidthDots()

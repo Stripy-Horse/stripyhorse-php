@@ -480,6 +480,8 @@ listPrinters(): \StripyHorse\Model\ListPrintersOutputBody
 
 List your printers
 
+Every printer on your account, whichever of its keys created them.
+
 ### Example
 
 ```php
