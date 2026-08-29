@@ -96,6 +96,18 @@ class SimulatorApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteJob
+     *
+     * Delete one captured job.
+     *
+     */
+    public function testDeleteJob()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deletePrinter
      *
      * Delete a printer and its captured jobs.
