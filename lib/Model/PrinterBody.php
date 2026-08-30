@@ -57,6 +57,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
+        'access_mode' => 'string',
         'anonymize' => 'bool',
         'created_at' => '\DateTime',
         'dpmm' => 'int',
@@ -81,6 +82,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'access_mode' => null,
         'anonymize' => null,
         'created_at' => 'date-time',
         'dpmm' => 'int64',
@@ -103,6 +105,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'access_mode' => false,
         'anonymize' => false,
         'created_at' => false,
         'dpmm' => false,
@@ -205,6 +208,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'access_mode' => 'accessMode',
         'anonymize' => 'anonymize',
         'created_at' => 'createdAt',
         'dpmm' => 'dpmm',
@@ -227,6 +231,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'access_mode' => 'setAccessMode',
         'anonymize' => 'setAnonymize',
         'created_at' => 'setCreatedAt',
         'dpmm' => 'setDpmm',
@@ -249,6 +254,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'access_mode' => 'getAccessMode',
         'anonymize' => 'getAnonymize',
         'created_at' => 'getCreatedAt',
         'dpmm' => 'getDpmm',
@@ -337,6 +343,7 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('access_mode', $data ?? [], null);
         $this->setIfExists('anonymize', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('dpmm', $data ?? [], null);
@@ -380,6 +387,9 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['access_mode'] === null) {
+            $invalidProperties[] = "'access_mode' can't be null";
+        }
         if ($this->container['anonymize'] === null) {
             $invalidProperties[] = "'anonymize' can't be null";
         }
@@ -430,6 +440,33 @@ class PrinterBody implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets access_mode
+     *
+     * @return string
+     */
+    public function getAccessMode()
+    {
+        return $this->container['access_mode'];
+    }
+
+    /**
+     * Sets access_mode
+     *
+     * @param string $access_mode Who may print to the TCP port: open (anyone), token (the stream must open with ~SH plus the ingest token), ip (only addresses the org has claimed)
+     *
+     * @return self
+     */
+    public function setAccessMode($access_mode)
+    {
+        if (is_null($access_mode)) {
+            throw new \InvalidArgumentException('non-nullable access_mode cannot be null');
+        }
+        $this->container['access_mode'] = $access_mode;
+
+        return $this;
+    }
 
     /**
      * Gets anonymize

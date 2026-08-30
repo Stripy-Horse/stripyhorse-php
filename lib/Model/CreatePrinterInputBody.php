@@ -57,6 +57,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $openAPITypes = [
+        'access_mode' => 'string',
         'anonymize' => 'bool',
         'dpmm' => 'int',
         'height_mm' => 'float',
@@ -75,6 +76,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'access_mode' => null,
         'anonymize' => null,
         'dpmm' => 'int64',
         'height_mm' => 'double',
@@ -91,6 +93,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'access_mode' => false,
         'anonymize' => false,
         'dpmm' => false,
         'height_mm' => false,
@@ -187,6 +190,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'access_mode' => 'accessMode',
         'anonymize' => 'anonymize',
         'dpmm' => 'dpmm',
         'height_mm' => 'heightMm',
@@ -203,6 +207,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'access_mode' => 'setAccessMode',
         'anonymize' => 'setAnonymize',
         'dpmm' => 'setDpmm',
         'height_mm' => 'setHeightMm',
@@ -219,6 +224,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'access_mode' => 'getAccessMode',
         'anonymize' => 'getAnonymize',
         'dpmm' => 'getDpmm',
         'height_mm' => 'getHeightMm',
@@ -270,6 +276,10 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const ACCESS_MODE_EMPTY = '';
+    public const ACCESS_MODE_OPEN = 'open';
+    public const ACCESS_MODE_TOKEN = 'token';
+    public const ACCESS_MODE_IP = 'ip';
     public const DPMM_NUMBER_6 = 6;
     public const DPMM_NUMBER_8 = 8;
     public const DPMM_NUMBER_12 = 12;
@@ -296,6 +306,21 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
     public const PRESET__1X1 = '1x1';
     public const PRESET_NETSTAMP = 'netstamp';
     public const PRESET_A6 = 'a6';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAccessModeAllowableValues()
+    {
+        return [
+            self::ACCESS_MODE_EMPTY,
+            self::ACCESS_MODE_OPEN,
+            self::ACCESS_MODE_TOKEN,
+            self::ACCESS_MODE_IP,
+        ];
+    }
 
     /**
      * Gets allowable values of the enum
@@ -371,6 +396,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('access_mode', $data ?? [], null);
         $this->setIfExists('anonymize', $data ?? [], null);
         $this->setIfExists('dpmm', $data ?? [], null);
         $this->setIfExists('height_mm', $data ?? [], null);
@@ -407,6 +433,15 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getAccessModeAllowableValues();
+        if (!is_null($this->container['access_mode']) && !in_array($this->container['access_mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'access_mode', must be one of '%s'",
+                $this->container['access_mode'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         $allowedValues = $this->getDpmmAllowableValues();
         if (!is_null($this->container['dpmm']) && !in_array($this->container['dpmm'], $allowedValues, true)) {
@@ -464,6 +499,43 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets access_mode
+     *
+     * @return string|null
+     */
+    public function getAccessMode()
+    {
+        return $this->container['access_mode'];
+    }
+
+    /**
+     * Sets access_mode
+     *
+     * @param string|null $access_mode Who may print to the TCP port; default open. Use token from CI, where the source address is different every run.
+     *
+     * @return self
+     */
+    public function setAccessMode($access_mode)
+    {
+        if (is_null($access_mode)) {
+            throw new \InvalidArgumentException('non-nullable access_mode cannot be null');
+        }
+        $allowedValues = $this->getAccessModeAllowableValues();
+        if (!in_array($access_mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'access_mode', must be one of '%s'",
+                    $access_mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['access_mode'] = $access_mode;
+
+        return $this;
+    }
 
     /**
      * Gets anonymize

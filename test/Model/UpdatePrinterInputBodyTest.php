@@ -80,6 +80,15 @@ class UpdatePrinterInputBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "access_mode"
+     */
+    public function testPropertyAccessMode()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "anonymize"
      */
     public function testPropertyAnonymize()

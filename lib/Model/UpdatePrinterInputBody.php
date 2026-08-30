@@ -57,6 +57,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $openAPITypes = [
+        'access_mode' => 'string',
         'anonymize' => 'bool',
         'name' => 'string',
         'webhook_url' => 'string'
@@ -70,6 +71,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
+        'access_mode' => null,
         'anonymize' => null,
         'name' => null,
         'webhook_url' => null
@@ -81,6 +83,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var boolean[]
      */
     protected static array $openAPINullables = [
+        'access_mode' => false,
         'anonymize' => false,
         'name' => false,
         'webhook_url' => false
@@ -172,6 +175,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'access_mode' => 'accessMode',
         'anonymize' => 'anonymize',
         'name' => 'name',
         'webhook_url' => 'webhookUrl'
@@ -183,6 +187,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'access_mode' => 'setAccessMode',
         'anonymize' => 'setAnonymize',
         'name' => 'setName',
         'webhook_url' => 'setWebhookUrl'
@@ -194,6 +199,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'access_mode' => 'getAccessMode',
         'anonymize' => 'getAnonymize',
         'name' => 'getName',
         'webhook_url' => 'getWebhookUrl'
@@ -240,6 +246,23 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const ACCESS_MODE_OPEN = 'open';
+    public const ACCESS_MODE_TOKEN = 'token';
+    public const ACCESS_MODE_IP = 'ip';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAccessModeAllowableValues()
+    {
+        return [
+            self::ACCESS_MODE_OPEN,
+            self::ACCESS_MODE_TOKEN,
+            self::ACCESS_MODE_IP,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -256,6 +279,7 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('access_mode', $data ?? [], null);
         $this->setIfExists('anonymize', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('webhook_url', $data ?? [], null);
@@ -288,6 +312,15 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getAccessModeAllowableValues();
+        if (!is_null($this->container['access_mode']) && !in_array($this->container['access_mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'access_mode', must be one of '%s'",
+                $this->container['access_mode'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -302,6 +335,43 @@ class UpdatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets access_mode
+     *
+     * @return string|null
+     */
+    public function getAccessMode()
+    {
+        return $this->container['access_mode'];
+    }
+
+    /**
+     * Sets access_mode
+     *
+     * @param string|null $access_mode access_mode
+     *
+     * @return self
+     */
+    public function setAccessMode($access_mode)
+    {
+        if (is_null($access_mode)) {
+            throw new \InvalidArgumentException('non-nullable access_mode cannot be null');
+        }
+        $allowedValues = $this->getAccessModeAllowableValues();
+        if (!in_array($access_mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'access_mode', must be one of '%s'",
+                    $access_mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['access_mode'] = $access_mode;
+
+        return $this;
+    }
 
     /**
      * Gets anonymize

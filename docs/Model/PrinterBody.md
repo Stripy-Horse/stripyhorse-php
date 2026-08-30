@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**access_mode** | **string** | Who may print to the TCP port: open (anyone), token (the stream must open with ~SH plus the ingest token), ip (only addresses the org has claimed) |
 **anonymize** | **bool** | When true, PII is masked and graphics stripped from every captured frame |
 **created_at** | **\DateTime** |  |
 **dpmm** | **int** |  |
