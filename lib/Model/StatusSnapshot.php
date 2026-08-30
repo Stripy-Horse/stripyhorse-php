@@ -63,6 +63,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'friendly_name' => 'string',
         'label_length_dots' => 'int',
         'odometer' => 'int',
+        'queue' => '\StripyHorse\Model\HeldJob[]',
         'speed_ips' => 'string',
         'tear_off' => 'string',
         'width_dots' => 'int'
@@ -82,6 +83,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'friendly_name' => null,
         'label_length_dots' => 'int64',
         'odometer' => 'int64',
+        'queue' => null,
         'speed_ips' => null,
         'tear_off' => null,
         'width_dots' => 'int64'
@@ -99,6 +101,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'friendly_name' => false,
         'label_length_dots' => false,
         'odometer' => false,
+        'queue' => true,
         'speed_ips' => false,
         'tear_off' => false,
         'width_dots' => false
@@ -196,6 +199,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'friendly_name' => 'friendlyName',
         'label_length_dots' => 'labelLengthDots',
         'odometer' => 'odometer',
+        'queue' => 'queue',
         'speed_ips' => 'speedIps',
         'tear_off' => 'tearOff',
         'width_dots' => 'widthDots'
@@ -213,6 +217,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'friendly_name' => 'setFriendlyName',
         'label_length_dots' => 'setLabelLengthDots',
         'odometer' => 'setOdometer',
+        'queue' => 'setQueue',
         'speed_ips' => 'setSpeedIps',
         'tear_off' => 'setTearOff',
         'width_dots' => 'setWidthDots'
@@ -230,6 +235,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'friendly_name' => 'getFriendlyName',
         'label_length_dots' => 'getLabelLengthDots',
         'odometer' => 'getOdometer',
+        'queue' => 'getQueue',
         'speed_ips' => 'getSpeedIps',
         'tear_off' => 'getTearOff',
         'width_dots' => 'getWidthDots'
@@ -298,6 +304,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('friendly_name', $data ?? [], null);
         $this->setIfExists('label_length_dots', $data ?? [], null);
         $this->setIfExists('odometer', $data ?? [], null);
+        $this->setIfExists('queue', $data ?? [], null);
         $this->setIfExists('speed_ips', $data ?? [], null);
         $this->setIfExists('tear_off', $data ?? [], null);
         $this->setIfExists('width_dots', $data ?? [], null);
@@ -347,6 +354,9 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['odometer'] === null) {
             $invalidProperties[] = "'odometer' can't be null";
+        }
+        if ($this->container['queue'] === null && !$this->isNullableSetToNull('queue')) {
+            $invalidProperties[] = "'queue' is required";
         }
         if ($this->container['speed_ips'] === null) {
             $invalidProperties[] = "'speed_ips' can't be null";
@@ -530,6 +540,40 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable odometer cannot be null');
         }
         $this->container['odometer'] = $odometer;
+
+        return $this;
+    }
+
+    /**
+     * Gets queue
+     *
+     * @return \StripyHorse\Model\HeldJob[]|null
+     */
+    public function getQueue()
+    {
+        return $this->container['queue'];
+    }
+
+    /**
+     * Sets queue
+     *
+     * @param \StripyHorse\Model\HeldJob[]|null $queue queue
+     *
+     * @return self
+     */
+    public function setQueue($queue)
+    {
+        if (is_null($queue)) {
+            array_push($this->openAPINullablesSetToNull, 'queue');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('queue', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['queue'] = $queue;
 
         return $this;
     }

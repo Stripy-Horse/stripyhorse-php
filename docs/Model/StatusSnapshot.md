@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **friendly_name** | **string** | device.friendly_name override; empty means unset |
 **label_length_dots** | **int** |  |
 **odometer** | **int** |  |
+**queue** | [**\StripyHorse\Model\HeldJob[]**](HeldJob.md) |  |
 **speed_ips** | **string** | media.speed setting, inches/second |
 **tear_off** | **string** | ezpl.tear_off setting, dots |
 **width_dots** | **int** |  |

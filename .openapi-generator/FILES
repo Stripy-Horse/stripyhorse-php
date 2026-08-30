@@ -22,6 +22,7 @@ docs/Model/ErrorDetail.md
 docs/Model/ErrorModel.md
 docs/Model/Faults.md
 docs/Model/Finding.md
+docs/Model/HeldJob.md
 docs/Model/HostStatus.md
 docs/Model/HostStatusInputBody.md
 docs/Model/HostStatusOutputBody.md
@@ -74,6 +75,7 @@ lib/Model/ErrorDetail.php
 lib/Model/ErrorModel.php
 lib/Model/Faults.php
 lib/Model/Finding.php
+lib/Model/HeldJob.php
 lib/Model/HostStatus.php
 lib/Model/HostStatusInputBody.php
 lib/Model/HostStatusOutputBody.php
@@ -124,6 +126,7 @@ test/Model/ErrorDetailTest.php
 test/Model/ErrorModelTest.php
 test/Model/FaultsTest.php
 test/Model/FindingTest.php
+test/Model/HeldJobTest.php
 test/Model/HostStatusInputBodyTest.php
 test/Model/HostStatusOutputBodyTest.php
 test/Model/HostStatusTest.php
