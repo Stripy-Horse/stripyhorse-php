@@ -32,6 +32,7 @@ docs/Model/JobOutputBody.md
 docs/Model/JobSummary.md
 docs/Model/ListJobsOutputBody.md
 docs/Model/ListPrintersOutputBody.md
+docs/Model/MediaInputBody.md
 docs/Model/PreflightInputBody.md
 docs/Model/PreflightOutputBody.md
 docs/Model/PrinterBody.md
@@ -45,6 +46,7 @@ docs/Model/StampOutputBody.md
 docs/Model/StateOutputBody.md
 docs/Model/StatusField.md
 docs/Model/StatusSnapshot.md
+docs/Model/Supplies.md
 docs/Model/UnicodeInputBody.md
 docs/Model/UnicodeOutputBody.md
 docs/Model/UpdatePrinterInputBody.md
@@ -85,6 +87,7 @@ lib/Model/JobOutputBody.php
 lib/Model/JobSummary.php
 lib/Model/ListJobsOutputBody.php
 lib/Model/ListPrintersOutputBody.php
+lib/Model/MediaInputBody.php
 lib/Model/ModelInterface.php
 lib/Model/PreflightInputBody.php
 lib/Model/PreflightOutputBody.php
@@ -99,6 +102,7 @@ lib/Model/StampOutputBody.php
 lib/Model/StateOutputBody.php
 lib/Model/StatusField.php
 lib/Model/StatusSnapshot.php
+lib/Model/Supplies.php
 lib/Model/UnicodeInputBody.php
 lib/Model/UnicodeOutputBody.php
 lib/Model/UpdatePrinterInputBody.php
@@ -136,6 +140,7 @@ test/Model/JobOutputBodyTest.php
 test/Model/JobSummaryTest.php
 test/Model/ListJobsOutputBodyTest.php
 test/Model/ListPrintersOutputBodyTest.php
+test/Model/MediaInputBodyTest.php
 test/Model/PreflightInputBodyTest.php
 test/Model/PreflightOutputBodyTest.php
 test/Model/PrinterBodyTCPStructTest.php
@@ -149,6 +154,7 @@ test/Model/StampOutputBodyTest.php
 test/Model/StateOutputBodyTest.php
 test/Model/StatusFieldTest.php
 test/Model/StatusSnapshotTest.php
+test/Model/SuppliesTest.php
 test/Model/UnicodeInputBodyTest.php
 test/Model/UnicodeOutputBodyTest.php
 test/Model/UpdatePrinterInputBodyTest.php

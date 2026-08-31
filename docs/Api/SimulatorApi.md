@@ -15,6 +15,7 @@ All URIs are relative to https://api.stripyhorse.io, except if the operation def
 | [**getPrinter()**](SimulatorApi.md#getPrinter) | **GET** /v1/printers/{printerId} | Get a printer with live state |
 | [**listJobs()**](SimulatorApi.md#listJobs) | **GET** /v1/printers/{printerId}/jobs | List captured jobs, newest first |
 | [**listPrinters()**](SimulatorApi.md#listPrinters) | **GET** /v1/printers | List your printers |
+| [**loadPrinterMedia()**](SimulatorApi.md#loadPrinterMedia) | **POST** /v1/printers/{printerId}/media | Fit a fresh roll and ribbon |
 | [**resetPrinter()**](SimulatorApi.md#resetPrinter) | **POST** /v1/printers/{printerId}/reset | Clear all faults and flush held jobs |
 | [**setPrinterFaults()**](SimulatorApi.md#setPrinterFaults) | **POST** /v1/printers/{printerId}/faults | Inject or clear fault conditions |
 | [**updatePrinter()**](SimulatorApi.md#updatePrinter) | **PATCH** /v1/printers/{printerId} | Rename a printer or set its webhook URL |
@@ -593,6 +594,73 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`, `application/problem+json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `loadPrinterMedia()`
+
+```php
+loadPrinterMedia($printer_id, $media_input_body): \StripyHorse\Model\StateOutputBody
+```
+
+Fit a fresh roll and ribbon
+
+A loaded roll runs down as labels print and raises paper out when it is spent, which holds everything sent after it. Zero is an endless roll, which is the default and never runs out.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: headerKey
+$config = StripyHorse\Configuration::getDefaultConfiguration()->setApiKey('X-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = StripyHorse\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Api-Key', 'Bearer');
+
+// Configure Bearer (sh_live_…) authorization: bearerKey
+$config = StripyHorse\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new StripyHorse\Api\SimulatorApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$printer_id = 'printer_id_example'; // string
+$media_input_body = new \StripyHorse\Model\MediaInputBody(); // \StripyHorse\Model\MediaInputBody
+
+try {
+    $result = $apiInstance->loadPrinterMedia($printer_id, $media_input_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SimulatorApi->loadPrinterMedia: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **printer_id** | **string**|  | |
+| **media_input_body** | [**\StripyHorse\Model\MediaInputBody**](../Model/MediaInputBody.md)|  | |
+
+### Return type
+
+[**\StripyHorse\Model\StateOutputBody**](../Model/StateOutputBody.md)
+
+### Authorization
+
+[headerKey](../../README.md#headerKey), [bearerKey](../../README.md#bearerKey)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`, `application/problem+json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

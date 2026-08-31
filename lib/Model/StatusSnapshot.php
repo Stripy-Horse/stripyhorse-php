@@ -65,6 +65,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'odometer' => 'int',
         'queue' => '\StripyHorse\Model\HeldJob[]',
         'speed_ips' => 'string',
+        'supplies' => '\StripyHorse\Model\Supplies',
         'tear_off' => 'string',
         'width_dots' => 'int'
     ];
@@ -85,6 +86,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'odometer' => 'int64',
         'queue' => null,
         'speed_ips' => null,
+        'supplies' => null,
         'tear_off' => null,
         'width_dots' => 'int64'
     ];
@@ -103,6 +105,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'odometer' => false,
         'queue' => true,
         'speed_ips' => false,
+        'supplies' => false,
         'tear_off' => false,
         'width_dots' => false
     ];
@@ -201,6 +204,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'odometer' => 'odometer',
         'queue' => 'queue',
         'speed_ips' => 'speedIps',
+        'supplies' => 'supplies',
         'tear_off' => 'tearOff',
         'width_dots' => 'widthDots'
     ];
@@ -219,6 +223,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'odometer' => 'setOdometer',
         'queue' => 'setQueue',
         'speed_ips' => 'setSpeedIps',
+        'supplies' => 'setSupplies',
         'tear_off' => 'setTearOff',
         'width_dots' => 'setWidthDots'
     ];
@@ -237,6 +242,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         'odometer' => 'getOdometer',
         'queue' => 'getQueue',
         'speed_ips' => 'getSpeedIps',
+        'supplies' => 'getSupplies',
         'tear_off' => 'getTearOff',
         'width_dots' => 'getWidthDots'
     ];
@@ -306,6 +312,7 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('odometer', $data ?? [], null);
         $this->setIfExists('queue', $data ?? [], null);
         $this->setIfExists('speed_ips', $data ?? [], null);
+        $this->setIfExists('supplies', $data ?? [], null);
         $this->setIfExists('tear_off', $data ?? [], null);
         $this->setIfExists('width_dots', $data ?? [], null);
     }
@@ -360,6 +367,9 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['speed_ips'] === null) {
             $invalidProperties[] = "'speed_ips' can't be null";
+        }
+        if ($this->container['supplies'] === null) {
+            $invalidProperties[] = "'supplies' can't be null";
         }
         if ($this->container['tear_off'] === null) {
             $invalidProperties[] = "'tear_off' can't be null";
@@ -601,6 +611,33 @@ class StatusSnapshot implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable speed_ips cannot be null');
         }
         $this->container['speed_ips'] = $speed_ips;
+
+        return $this;
+    }
+
+    /**
+     * Gets supplies
+     *
+     * @return \StripyHorse\Model\Supplies
+     */
+    public function getSupplies()
+    {
+        return $this->container['supplies'];
+    }
+
+    /**
+     * Sets supplies
+     *
+     * @param \StripyHorse\Model\Supplies $supplies What is left on the roll; zero loaded means endless
+     *
+     * @return self
+     */
+    public function setSupplies($supplies)
+    {
+        if (is_null($supplies)) {
+            throw new \InvalidArgumentException('non-nullable supplies cannot be null');
+        }
+        $this->container['supplies'] = $supplies;
 
         return $this;
     }

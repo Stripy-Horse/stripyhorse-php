@@ -180,6 +180,18 @@ class SimulatorApiTest extends TestCase
     }
 
     /**
+     * Test case for loadPrinterMedia
+     *
+     * Fit a fresh roll and ribbon.
+     *
+     */
+    public function testLoadPrinterMedia()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for resetPrinter
      *
      * Clear all faults and flush held jobs.

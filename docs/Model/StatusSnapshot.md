@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **odometer** | **int** |  |
 **queue** | [**\StripyHorse\Model\HeldJob[]**](HeldJob.md) |  |
 **speed_ips** | **string** | media.speed setting, inches/second |
+**supplies** | [**\StripyHorse\Model\Supplies**](Supplies.md) | What is left on the roll; zero loaded means endless |
 **tear_off** | **string** | ezpl.tear_off setting, dots |
 **width_dots** | **int** |  |
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * StatusSnapshotTest
+ * SuppliesTest
  *
  * PHP version 8.1
  *
@@ -31,15 +31,15 @@ namespace StripyHorse\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * StatusSnapshotTest Class Doc Comment
+ * SuppliesTest Class Doc Comment
  *
  * @category    Class
- * @description StatusSnapshot
+ * @description Supplies
  * @package     StripyHorse
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class StatusSnapshotTest extends TestCase
+class SuppliesTest extends TestCase
 {
 
     /**
@@ -71,108 +71,45 @@ class StatusSnapshotTest extends TestCase
     }
 
     /**
-     * Test "StatusSnapshot"
+     * Test "Supplies"
      */
-    public function testStatusSnapshot()
+    public function testSupplies()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "darkness"
+     * Test attribute "labels_left"
      */
-    public function testPropertyDarkness()
+    public function testPropertyLabelsLeft()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "faults"
+     * Test attribute "labels_loaded"
      */
-    public function testPropertyFaults()
+    public function testPropertyLabelsLoaded()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "formats_in_buffer"
+     * Test attribute "ribbon_mm_left"
      */
-    public function testPropertyFormatsInBuffer()
+    public function testPropertyRibbonMmLeft()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "friendly_name"
+     * Test attribute "ribbon_mm_loaded"
      */
-    public function testPropertyFriendlyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "label_length_dots"
-     */
-    public function testPropertyLabelLengthDots()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "odometer"
-     */
-    public function testPropertyOdometer()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "queue"
-     */
-    public function testPropertyQueue()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "speed_ips"
-     */
-    public function testPropertySpeedIps()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "supplies"
-     */
-    public function testPropertySupplies()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "tear_off"
-     */
-    public function testPropertyTearOff()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "width_dots"
-     */
-    public function testPropertyWidthDots()
+    public function testPropertyRibbonMmLoaded()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
