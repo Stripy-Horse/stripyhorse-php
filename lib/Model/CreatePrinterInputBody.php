@@ -64,6 +64,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         'mode' => 'string',
         'name' => 'string',
         'preset' => 'string',
+        'shared_port' => 'bool',
         'webhook_url' => 'string',
         'width_mm' => 'float'
     ];
@@ -83,6 +84,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         'mode' => null,
         'name' => null,
         'preset' => null,
+        'shared_port' => null,
         'webhook_url' => null,
         'width_mm' => 'double'
     ];
@@ -100,6 +102,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         'mode' => false,
         'name' => false,
         'preset' => false,
+        'shared_port' => false,
         'webhook_url' => false,
         'width_mm' => false
     ];
@@ -197,6 +200,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         'mode' => 'mode',
         'name' => 'name',
         'preset' => 'preset',
+        'shared_port' => 'sharedPort',
         'webhook_url' => 'webhookUrl',
         'width_mm' => 'widthMm'
     ];
@@ -214,6 +218,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         'mode' => 'setMode',
         'name' => 'setName',
         'preset' => 'setPreset',
+        'shared_port' => 'setSharedPort',
         'webhook_url' => 'setWebhookUrl',
         'width_mm' => 'setWidthMm'
     ];
@@ -231,6 +236,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         'mode' => 'getMode',
         'name' => 'getName',
         'preset' => 'getPreset',
+        'shared_port' => 'getSharedPort',
         'webhook_url' => 'getWebhookUrl',
         'width_mm' => 'getWidthMm'
     ];
@@ -403,6 +409,7 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('mode', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('preset', $data ?? [], null);
+        $this->setIfExists('shared_port', $data ?? [], null);
         $this->setIfExists('webhook_url', $data ?? [], null);
         $this->setIfExists('width_mm', $data ?? [], null);
     }
@@ -734,6 +741,33 @@ class CreatePrinterInputBody implements ModelInterface, ArrayAccess, \JsonSerial
             );
         }
         $this->container['preset'] = $preset;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared_port
+     *
+     * @return bool|null
+     */
+    public function getSharedPort()
+    {
+        return $this->container['shared_port'];
+    }
+
+    /**
+     * Sets shared_port
+     *
+     * @param bool|null $shared_port Put this printer on the shared router port instead of spending one of the plan's dedicated ports. It is then reached by naming it in the stream, a ZPL comment carrying the ingest token, which suits CI.
+     *
+     * @return self
+     */
+    public function setSharedPort($shared_port)
+    {
+        if (is_null($shared_port)) {
+            throw new \InvalidArgumentException('non-nullable shared_port cannot be null');
+        }
+        $this->container['shared_port'] = $shared_port;
 
         return $this;
     }

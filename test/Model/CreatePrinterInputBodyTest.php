@@ -143,6 +143,15 @@ class CreatePrinterInputBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "shared_port"
+     */
+    public function testPropertySharedPort()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "webhook_url"
      */
     public function testPropertyWebhookUrl()
