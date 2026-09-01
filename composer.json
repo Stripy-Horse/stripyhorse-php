@@ -1,6 +1,6 @@
 {
     "name": "stripyhorse/stripyhorse-php",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Zebra/ZPL developer tools: render ZPL to PNG, convert PDFs and images to print-ready ZPL, and drive hosted virtual Zebra printers for testing. Authenticate with an API key via `Authorization: Bearer sh_live_…` or `X-Api-Key`.",
     "keywords": [
         "openapitools",
